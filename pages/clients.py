@@ -8,11 +8,14 @@ from models.client import Client
 
 View.load_clients()
 
-
 st.set_page_config(
     page_title="Clients",
     page_icon="👋",
 )
+
+with st.sidebar:
+    st.page_link("main.py", label="Appointment System")
+    st.page_link("pages/clients.py", label="Clients Manager")
 
 st.header("Client Manager")
 
