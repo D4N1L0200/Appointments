@@ -16,6 +16,7 @@ st.set_page_config(
 with st.sidebar:
     st.page_link("main.py", label="Appointment System")
     st.page_link("pages/clients.py", label="Clients Manager")
+    st.page_link("pages/services.py", label="Services Manager")
 
 st.header("Client Manager")
 
@@ -26,11 +27,11 @@ list_tab, insert_tab, update_tab, delete_tab = st.tabs(
 with list_tab:
     st.title("List Clients")
 
-    ids: list = []
-    names: list = []
-    ages: list = []
-    phones: list = []
-    cpfs: list = []
+    ids: list[int] = []
+    names: list[str] = []
+    ages: list[int] = []
+    phones: list[str] = []
+    cpfs: list[str] = []
 
     clients = View.get_clients()
     for c in clients:
@@ -70,8 +71,11 @@ with insert_tab:
     cpf: str = st.text_input("CPF of the client: ")
 
     if st.button("Register"):
-        View.insert_client(name, age, phone, cpf)
-        st.success("Client registered.")
+        if not name or not age or not phone or not cpf:
+            st.warning("Please fill in all fields.")
+        else:
+            View.insert_client(name, age, phone, cpf)
+            st.success("Client registered.")
 
 with update_tab:
     st.title("Update Client")
@@ -91,8 +95,11 @@ with update_tab:
         c_id: int = client.get_id()
 
         if st.button("Update"):
-            View.update_client(c_id, name, age, phone, cpf)
-            st.success("Client updated.")
+            if not name or not age or not phone or not cpf:
+                st.warning("Please fill in all fields.")
+            else:
+                View.update_client(c_id, name, age, phone, cpf)
+                st.success("Client updated.")
 
 with delete_tab:
     st.title("Delete Client")
@@ -105,5 +112,8 @@ with delete_tab:
         c_id = client.get_id()
 
         if st.button("Delete"):
-            View.delete_client(c_id)
-            st.success("Client deleted.")
+            if View.get_client_by_id(c_id) is None:
+                st.warning("Client not found.")
+            else:
+                View.delete_client(c_id)
+                st.success("Client deleted.")

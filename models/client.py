@@ -106,11 +106,18 @@ class ClientsCRUD:
     @classmethod
     def insert(cls, obj: Client) -> None:
         ids: list[int] = [c.get_id() for c in cls.clients]
+        ids.sort()
         if len(ids) == 0:
             obj.set_id(0)
         else:
-            obj.set_id(max(ids) + 1)
+            for i in range(len(ids)):
+                if ids[i] != i:
+                    obj.set_id(i)
+                    break
+            else:
+                obj.set_id(len(ids))
         cls.clients.append(obj)
+        cls.clients.sort(key=lambda c: c.get_id())
 
         cls.save()
 
