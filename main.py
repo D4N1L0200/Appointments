@@ -13,7 +13,6 @@ def main():
 
     st.header("Appointment System")
     st.subheader("By: Danilo")
-    # describe the project
 
     st.write(
         "This is a simple project that was created to manage appointments. Navigate using the sidebar."
