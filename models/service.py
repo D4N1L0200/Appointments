@@ -15,37 +15,37 @@ class Service:
         self.set_duration(duration)
 
     def set_id(self, c_id: int) -> None:
-        if c_id >= 0:
+        if isinstance(c_id, int) and c_id >= 0:
             self.__id = c_id
         else:
-            raise ValueError("Id has to be a positive number")
+            raise ValueError("Id has to be a positive integer")
 
     def get_id(self) -> int:
         return self.__id
 
     def set_name(self, name: str) -> None:
-        if name:
+        if isinstance(name, str) and name:
             self.__name = name
         else:
-            raise ValueError("Name can't be empty")
+            raise ValueError("Name has to be a string and can't be empty")
 
     def get_name(self) -> str:
         return self.__name
 
     def set_price(self, price: float) -> None:
-        if price > 0:
+        if isinstance(price, float) and price > 0:
             self.__price = price
         else:
-            raise ValueError("Price has to be a positive number")
+            raise ValueError("Price has to be a positive integer")
 
     def get_price(self) -> float:
         return self.__price
 
     def set_duration(self, duration: int) -> None:
-        if duration > 0:
+        if isinstance(duration, int) and duration > 0:
             self.__duration = duration
         else:
-            raise ValueError("Duration has to be a positive number")
+            raise ValueError("Duration has to be a positive integer")
 
     def get_duration(self) -> int:
         return self.__duration
@@ -92,6 +92,9 @@ class ServicesCRUD:
 
     @classmethod
     def insert(cls, obj: Service) -> None:
+        if not isinstance(obj, Service):
+            raise TypeError("Object must be of type Service")
+
         ids: list[int] = [s.get_id() for s in cls.services]
         ids.sort()
         if len(ids) == 0:
@@ -114,6 +117,9 @@ class ServicesCRUD:
 
     @classmethod
     def get_service_by_id(cls, s_id: int) -> Union[Service, None]:
+        if not isinstance(s_id, int) or s_id < 0:
+            raise ValueError("Id has to be a positive integer")
+
         for s in cls.services:
             if s_id == s.get_id():
                 return s
@@ -122,6 +128,18 @@ class ServicesCRUD:
 
     @classmethod
     def update(cls, s_id: int, name: str, price: float, duration: int) -> None:
+        if not isinstance(s_id, int) or s_id < 0:
+            raise ValueError("Id has to be a positive integer")
+
+        if not isinstance(name, str) or not name:
+            raise ValueError("Name has to be a string and can't be empty")
+
+        if not isinstance(price, float) or price <= 0:
+            raise ValueError("Price has to be a positive float")
+
+        if not isinstance(duration, int) or duration <= 0:
+            raise ValueError("Duration has to be a positive integer")
+
         s: Union[Service, None] = cls.get_service_by_id(s_id)
         if s is not None:
             s.set_name(name)
@@ -131,6 +149,9 @@ class ServicesCRUD:
 
     @classmethod
     def delete(cls, s_id: int) -> None:
+        if not isinstance(s_id, int) or s_id < 0:
+            raise ValueError("Id has to be a positive integer")
+
         for s in cls.services:
             if s_id == s.get_id():
                 cls.services.remove(s)

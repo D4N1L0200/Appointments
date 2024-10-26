@@ -17,46 +17,46 @@ class Client:
         self.set_cpf(cpf)
 
     def set_id(self, c_id: int) -> None:
-        if c_id >= 0:
+        if isinstance(c_id, int) and c_id >= 0:
             self.__id = c_id
         else:
-            raise ValueError("Id has to be a positive number")
+            raise ValueError("Id has to be a positive integer")
 
     def get_id(self) -> int:
         return self.__id
 
     def set_name(self, name: str) -> None:
-        if name:
+        if isinstance(name, str) and name:
             self.__name = name
         else:
-            raise ValueError("Name can't be empty")
+            raise ValueError("Name has to be a string and can't be empty")
 
     def get_name(self) -> str:
         return self.__name
 
     def set_phone(self, phone: str) -> None:
-        if phone:
+        if isinstance(phone, str) and phone:
             self.__phone = phone
         else:
-            raise ValueError("Phone can't be empty")
+            raise ValueError("Phone has to be a string and can't be empty")
 
     def get_phone(self) -> str:
         return self.__phone
 
     def set_cpf(self, cpf: str) -> None:
-        if cpf:
+        if isinstance(cpf, str) and cpf:
             self.__cpf = cpf
         else:
-            raise ValueError("CPF can't be empty")
+            raise ValueError("CPF has to be a string and can't be empty")
 
     def get_cpf(self) -> str:
         return self.__cpf
 
     def set_age(self, age: int) -> None:
-        if age >= 0:
+        if isinstance(age, int) and age >= 0:
             self.__age = age
         else:
-            raise ValueError("Age has to be a positive number")
+            raise ValueError("Age has to be a positive integer")
 
     def get_age(self) -> int:
         return self.__age
@@ -105,6 +105,9 @@ class ClientsCRUD:
 
     @classmethod
     def insert(cls, obj: Client) -> None:
+        if not isinstance(obj, Client):
+            raise TypeError("Object must be of type Client")
+
         ids: list[int] = [c.get_id() for c in cls.clients]
         ids.sort()
         if len(ids) == 0:
@@ -127,6 +130,9 @@ class ClientsCRUD:
 
     @classmethod
     def get_client_by_id(cls, c_id: int) -> Union[Client, None]:
+        if not isinstance(c_id, int) or c_id < 0:
+            raise ValueError("Id has to be a positive integer")
+
         for c in cls.clients:
             if c_id == c.get_id():
                 return c
@@ -135,6 +141,21 @@ class ClientsCRUD:
 
     @classmethod
     def update(cls, c_id: int, name: str, age: int, phone: str, cpf: str) -> None:
+        if not isinstance(c_id, int) or c_id < 0:
+            raise ValueError("Id has to be a positive integer")
+
+        if not isinstance(name, str) or not name:
+            raise ValueError("Name has to be a string and can't be empty")
+
+        if not isinstance(age, int) or age < 0:
+            raise ValueError("Age has to be a positive integer")
+
+        if not isinstance(phone, str) or not phone:
+            raise ValueError("Phone has to be a string and can't be empty")
+
+        if not isinstance(cpf, str) or not cpf:
+            raise ValueError("CPF has to be a string and can't be empty")
+
         c: Union[Client, None] = cls.get_client_by_id(c_id)
         if c is not None:
             c.set_name(name)
@@ -145,6 +166,9 @@ class ClientsCRUD:
 
     @classmethod
     def delete(cls, c_id: int) -> None:
+        if not isinstance(c_id, int) or c_id < 0:
+            raise ValueError("Id has to be a positive integer")
+
         for c in cls.clients:
             if c_id == c.get_id():
                 cls.clients.remove(c)
