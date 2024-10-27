@@ -1,10 +1,13 @@
 # Appointment Manager
 
-This is a simple appointment manager built with Python and Streamlit. The current version includes basic CRUD operations for managing clients. More features, such as appointment scheduling and other functionalities, will be added in future updates.
+This is a simple appointment manager built with Python and Streamlit. The current version includes basic CRUD operations for managing clients, services and appointments, also a way to create available appointments and schedule appointments.
 
 ## Features
 
 -   Client management (CRUD: Create, Read, Update, Delete)
+-   Service management (CRUD: Create, Read, Update, Delete)
+-   Appointment management (CRUD: Create, Read, Update, Delete)
+-   Open agenda (Create multiple available appointments at once)
 
 ## Requirements
 
@@ -31,7 +34,6 @@ This is a simple appointment manager built with Python and Streamlit. The curren
 
 ## Future Features
 
--   Appointment scheduling and management
 -   User authentication
 
 ## License
