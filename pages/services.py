@@ -17,6 +17,8 @@ with st.sidebar:
     st.page_link("main.py", label="Appointment System")
     st.page_link("pages/clients.py", label="Clients Manager")
     st.page_link("pages/services.py", label="Services Manager")
+    st.page_link("pages/appointments.py", label="Appointments Manager")
+    st.page_link("pages/open_agenda.py", label="Open Agenda")
 
 st.header("Service Manager")
 
@@ -51,16 +53,19 @@ with list_tab:
         }
     )
 
-    st.dataframe(
-        df,
-        column_config={
-            "id": "ID",
-            "name": "Name",
-            "price": "Price",
-            "duration": "Duration",
-        },
-        hide_index=True,
-    )
+    if len(services) > 0:
+        st.dataframe(
+            df,
+            column_config={
+                "id": "ID",
+                "name": "Name",
+                "price": "Price",
+                "duration": "Duration",
+            },
+            hide_index=True,
+        )
+    else:
+        st.warning("There are no services to list.")
 
 with insert_tab:
     st.title("Add Service")
@@ -78,13 +83,13 @@ with insert_tab:
 with update_tab:
     st.title("Update Service")
 
-    service: Union[Service, None] = st.selectbox(
-        "Select the service to update", View.get_services(), index=None
-    )
+    services = View.get_services()
+    service = st.selectbox("Select the service to update", services, index=None)
+
+    if len(services) == 0:
+        st.warning("There are no services to update.")
 
     if service is not None:
-        st.write("You selected:", service.get_name())
-
         name = st.text_input("Name of the service: ", value=service.get_name())
         price = float(
             st.number_input("Price of the service: ", value=service.get_price())
@@ -107,9 +112,11 @@ with update_tab:
 with delete_tab:
     st.title("Delete Service")
 
-    service = st.selectbox(
-        "Select the service to delete", View.get_services(), index=None
-    )
+    services = View.get_services()
+    service = st.selectbox("Select the service to delete", services, index=None)
+
+    if len(services) == 0:
+        st.warning("There are no services to delete.")
 
     if service is not None:
         st.write("You selected:", service.get_name())

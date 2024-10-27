@@ -17,6 +17,8 @@ with st.sidebar:
     st.page_link("main.py", label="Appointment System")
     st.page_link("pages/clients.py", label="Clients Manager")
     st.page_link("pages/services.py", label="Services Manager")
+    st.page_link("pages/appointments.py", label="Appointments Manager")
+    st.page_link("pages/open_agenda.py", label="Open Agenda")
 
 st.header("Client Manager")
 
@@ -51,17 +53,20 @@ with list_tab:
         }
     )
 
-    st.dataframe(
-        df,
-        column_config={
-            "id": "ID",
-            "name": "Name",
-            "age": "Age",
-            "phone": "Phone",
-            "cpf": "CPF",
-        },
-        hide_index=True,
-    )
+    if len(clients) > 0:
+        st.dataframe(
+            df,
+            column_config={
+                "id": "ID",
+                "name": "Name",
+                "age": "Age",
+                "phone": "Phone",
+                "cpf": "CPF",
+            },
+            hide_index=True,
+        )
+    else:
+        st.warning("There are no clients to list.")
 
 with insert_tab:
     st.title("Add Client")
@@ -80,13 +85,13 @@ with insert_tab:
 with update_tab:
     st.title("Update Client")
 
-    client: Union[Client, None] = st.selectbox(
-        "Select the client to update", View.get_clients(), index=None
-    )
+    clients = View.get_clients()
+    client = st.selectbox("Select the client to update", clients, index=None)
+
+    if len(clients) == 0:
+        st.warning("There are no clients to update.")
 
     if client is not None:
-        st.write("You selected:", client.get_name())
-
         name = st.text_input("Name of the client: ", value=client.get_name())
         age = int(st.number_input("Age of the client: ", value=client.get_age()))
         phone = st.text_input("Phone number of the client: ", value=client.get_phone())
@@ -104,7 +109,11 @@ with update_tab:
 with delete_tab:
     st.title("Delete Client")
 
-    client = st.selectbox("Select the client to delete", View.get_clients(), index=None)
+    clients = View.get_clients()
+    client = st.selectbox("Select the client to delete", clients, index=None)
+
+    if len(clients) == 0:
+        st.warning("There are no clients to delete.")
 
     if client is not None:
         st.write("You selected:", client.get_name())

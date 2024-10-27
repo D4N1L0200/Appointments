@@ -11,6 +11,8 @@ def main():
         st.page_link("main.py", label="Appointment System")
         st.page_link("pages/clients.py", label="Clients Manager")
         st.page_link("pages/services.py", label="Services Manager")
+        st.page_link("pages/appointments.py", label="Appointments Manager")
+        st.page_link("pages/open_agenda.py", label="Open Agenda")
 
     st.header("Appointment System")
     st.subheader("By: Danilo")

@@ -1,0 +1,149 @@
+[
+	{
+		"id": 0,
+		"client_id": -1,
+		"service_id": 2,
+		"date": "2024-10-27T13:00:00",
+		"available": true
+	},
+	{
+		"id": 1,
+		"client_id": 0,
+		"service_id": 2,
+		"date": "2024-10-27T13:30:00",
+		"available": false
+	},
+	{
+		"id": 2,
+		"client_id": -1,
+		"service_id": 2,
+		"date": "2024-10-27T14:00:00",
+		"available": true
+	},
+	{
+		"id": 3,
+		"client_id": -1,
+		"service_id": 2,
+		"date": "2024-10-27T14:30:00",
+		"available": true
+	},
+	{
+		"id": 4,
+		"client_id": -1,
+		"service_id": 2,
+		"date": "2024-10-27T15:00:00",
+		"available": true
+	},
+	{
+		"id": 5,
+		"client_id": 4,
+		"service_id": 2,
+		"date": "2024-10-27T15:30:00",
+		"available": false
+	},
+	{
+		"id": 6,
+		"client_id": -1,
+		"service_id": 2,
+		"date": "2024-10-27T16:00:00",
+		"available": true
+	},
+	{
+		"id": 7,
+		"client_id": -1,
+		"service_id": 2,
+		"date": "2024-10-27T16:30:00",
+		"available": true
+	},
+	{
+		"id": 8,
+		"client_id": -1,
+		"service_id": 2,
+		"date": "2024-10-27T17:00:00",
+		"available": true
+	},
+	{
+		"id": 9,
+		"client_id": -1,
+		"service_id": 2,
+		"date": "2024-10-27T17:30:00",
+		"available": true
+	},
+	{
+		"id": 10,
+		"client_id": -1,
+		"service_id": 0,
+		"date": "2024-10-27T08:00:00",
+		"available": true
+	},
+	{
+		"id": 11,
+		"client_id": -1,
+		"service_id": 0,
+		"date": "2024-10-27T08:30:00",
+		"available": true
+	},
+	{
+		"id": 12,
+		"client_id": -1,
+		"service_id": 0,
+		"date": "2024-10-27T09:00:00",
+		"available": true
+	},
+	{
+		"id": 13,
+		"client_id": -1,
+		"service_id": 0,
+		"date": "2024-10-27T09:30:00",
+		"available": true
+	},
+	{
+		"id": 14,
+		"client_id": 3,
+		"service_id": 0,
+		"date": "2024-10-27T10:00:00",
+		"available": false
+	},
+	{
+		"id": 15,
+		"client_id": 4,
+		"service_id": 0,
+		"date": "2024-10-27T00:00:00",
+		"available": false
+	},
+	{
+		"id": 16,
+		"client_id": 2,
+		"service_id": 0,
+		"date": "2024-10-27T11:00:00",
+		"available": false
+	},
+	{
+		"id": 17,
+		"client_id": -1,
+		"service_id": 0,
+		"date": "2024-10-27T11:30:00",
+		"available": true
+	},
+	{
+		"id": 18,
+		"client_id": 2,
+		"service_id": 3,
+		"date": "2024-10-27T08:00:00",
+		"available": false
+	},
+	{
+		"id": 19,
+		"client_id": -1,
+		"service_id": 3,
+		"date": "2024-10-27T10:45:00",
+		"available": true
+	},
+	{
+		"id": 20,
+		"client_id": -1,
+		"service_id": 3,
+		"date": "2024-10-27T13:30:00",
+		"available": true
+	}
+]
